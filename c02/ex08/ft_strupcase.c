@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/29 14:11:10 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 15:39:43 by sehkang          ###   ########.fr       */
+/*   Created: 2021/03/29 19:11:40 by sehkang           #+#    #+#             */
+/*   lowdated: 2021/03/29 19:20:13 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+#include <stdio.h>
+char	*ft_strlowcase(char *str)
 {
 	int i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (str[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (65 < str[i] && str[i] < 90)
+			str[i] = str[i] + 32;
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (str);
 }
+int		main(void)
+{
+	char str[] = "Hello WORld 1234!\n";
+
+	ft_strlowcase(str);
+	printf("%s", str);
+}
+
