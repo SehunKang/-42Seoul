@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
+/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/29 12:30:20 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 13:07:16 by sehkang          ###   ########.fr       */
+/*   Created: 2021/03/29 12:33:53 by sehkang           #+#    #+#             */
+/*   Updated: 2021/03/29 13:01:55 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_rev_int_tab(int *tab, int size)
+void	ft_ultimate_div_mod(int *a, int *b)
 {
-	int i;
-	int temp;
+	int value_a;
+	int value_b;
 
-	i = 0;
-	while (i < (size - 1) / 2)
-	{
-		temp = tab[i];
-		tab[i] = tab[(size - 1) - i];
-		tab[(size - 1) - i] = temp;
-		i++;
-	}
+	value_a = *a;
+	value_b = *b;
+	*a = value_a / value_b;
+	*b = value_a % value_b;
 }

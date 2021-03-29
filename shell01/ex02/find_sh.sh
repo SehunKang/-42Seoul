@@ -1,3 +1,3 @@
 #!/bin/sh
 
-find . -name "*sh" -exec basename {} \; | sed "s/.sh$//g"
+find . -name "*sh" -exec basename -s .sh {} \;
