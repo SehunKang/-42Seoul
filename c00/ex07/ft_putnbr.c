@@ -39,3 +39,8 @@ void	ft_putnbr(int nb)
 		ft_putchar('8');
 	}
 }
+int main()
+{
+	ft_putnbr(02345);
+}
+
