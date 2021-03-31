@@ -6,11 +6,10 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:11:40 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 19:20:13 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/03/31 21:28:55 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 char	*ft_strupcase(char *str)
 {
 	int i;
@@ -24,11 +23,3 @@ char	*ft_strupcase(char *str)
 	}
 	return (str);
 }
-int		main(void)
-{
-	char str[] = "Hello World 1234!\n";
-
-	ft_strupcase(str);
-	printf("%s", str);
-}
-

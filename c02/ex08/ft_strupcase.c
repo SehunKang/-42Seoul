@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                     :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/29 19:11:40 by sehkang           #+#    #+#             */
-/*   lowdated: 2021/03/29 19:20:13 by sehkang          ###   ########.fr       */
+/*   Created: 2021/03/31 21:29:38 by sehkang           #+#    #+#             */
+/*   Updated: 2021/03/31 21:29:47 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 char	*ft_strlowcase(char *str)
 {
 	int i;
@@ -24,11 +23,3 @@ char	*ft_strlowcase(char *str)
 	}
 	return (str);
 }
-int		main(void)
-{
-	char str[] = "Hello WORld 1234!\n";
-
-	ft_strlowcase(str);
-	printf("%s", str);
-}
-

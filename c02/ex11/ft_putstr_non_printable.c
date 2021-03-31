@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/31 21:30:53 by sehkang           #+#    #+#             */
+/*   Updated: 2021/03/31 21:39:13 by sehkang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -7,9 +19,9 @@ void	ft_putchar(char c)
 
 void	ft_putstr_non_printable(char *str)
 {
-	int i;
-	int j;
-	char *hexnum;
+	int		i;
+	char	*hexnum;
+	int		j;
 
 	i = 0;
 	hexnum = "012345689abcde";
@@ -31,9 +43,4 @@ void	ft_putstr_non_printable(char *str)
 			ft_putchar(str[i]);
 		i++;
 	}
-}
-
-int	main(void)
-{
-	ft_putstr_non_printable("Coucou\ntu vas bien ?");
 }

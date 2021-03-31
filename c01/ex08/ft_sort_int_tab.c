@@ -6,9 +6,10 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 12:30:26 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 13:09:46 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/03/31 17:48:01 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
 void	ft_sort_int_tab(int *tab, int size)
 {
@@ -32,4 +33,11 @@ void	ft_sort_int_tab(int *tab, int size)
 		}
 		i++;
 	}
+}
+
+int	main()
+{
+	int str[] = {1, -10, 0, 10, 100};
+	ft_sort_int_tab(str, 4);
+	printf("%d %d %d %d %d", str[0], str[1], str[2], str[3], str[4]);
 }
