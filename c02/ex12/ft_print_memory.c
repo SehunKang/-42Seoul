@@ -33,7 +33,7 @@ void	p_out_memory(unsigned long address, int r_num)
 	}
 }
 
-void	p_out_hexval(char *str, int str_index, unsigned int size)
+void	p_out_hexval(unsigned char *str, int str_index, unsigned int size)
 {
 	unsigned int i;
 
@@ -79,7 +79,7 @@ void	*ft_print_memory(void *addr, unsigned int size)
 		if (i % 16 == 0)
 		{
 			p_out_memory((unsigned long)addr + i, 0);
-			p_out_hexval((char*)addr, i, size);
+			p_out_hexval((unsigned char *)addr, i, size);
 			p_out_string((char*)addr, i, size);
 			ft_putchar('\n');
 		}
