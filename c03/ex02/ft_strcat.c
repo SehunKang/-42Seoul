@@ -6,18 +6,21 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 19:32:26 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/04 19:46:32 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/04 20:26:36 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcat(char *dest, char *src)
 {
-	while (*dest)
-		dest++;
-	while(*dest = *src)
+	char *cp;
+
+	cp = dest;
+	while (*cp)
+		cp++;
+	while ((*cp = *src))
 	{
-		dest++;
+		cp++;
 		src++;
 	}
-	return(dest);
+	return (dest);
 }
