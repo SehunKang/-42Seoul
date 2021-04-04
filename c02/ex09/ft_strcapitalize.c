@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:39:27 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 22:10:32 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:39:16 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int		ft_char_is_alphanum(char c)
 	return (i);
 }
 
+int		ft_char_is_cap(char c)
+{
+	int i;
+
+	i = 0;
+	if (64 < c && c < 91)
+		i++;
+	return (i);
+}
+
 char	*ft_strcapitalize(char *str)
 {
 	int i;
@@ -31,6 +41,8 @@ char	*ft_strcapitalize(char *str)
 	j = 0;
 	while (str[i] != '\0')
 	{
+		if (ft_char_is_cap(str[i]))
+			str[i] += 32;
 		if (ft_char_is_alphanum(str[i]))
 			j++;
 		if (!(ft_char_is_alphanum(str[i])))

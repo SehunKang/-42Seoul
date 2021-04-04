@@ -6,14 +6,14 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 22:11:03 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/29 22:21:19 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/04 10:45:47 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	unsigned int i;
-	int length;
+	int				length;
+	unsigned int	i;
 
 	length = 0;
 	i = 0;

@@ -1,19 +1,23 @@
-#include <stdio.h>
-
-int	main(void);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/04 19:32:26 by sehkang           #+#    #+#             */
+/*   Updated: 2021/04/04 19:46:32 by sehkang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 char	*ft_strcat(char *dest, char *src)
 {
-	printf("%d,%p\n", dest[0], dest);
-	while (*++dest);
-	printf("%s,%p\n", dest, dest);
-	while ((*dest++ = *src++));
-	int i = 0;
-	while (++i < 10)
+	while (*dest)
+		dest++;
+	while(*dest = *src)
 	{
-		printf("%c", dest[i]);
+		dest++;
+		src++;
 	}
-	printf("%s, %p\n",dest, dest);
-	return (dest);
+	return(dest);
 }
-

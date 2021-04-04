@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:11:50 by sehkang           #+#    #+#             */
-/*   Updated: 2021/03/31 21:24:11 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/04 10:46:17 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ void	p_out_hexval(unsigned char *str, int str_index, unsigned int size)
 		{
 			ft_putchar(g_hex[(str[str_index + i] / 16)]);
 			ft_putchar(g_hex[(str[str_index + i] % 16)]);
-			if (i % 2 == 1)
-				ft_putchar(' ');
 		}
 		else
+		{
+			ft_putchar(' ');
+			ft_putchar(' ');
+		}
+		if (i % 2 == 1)
 			ft_putchar(' ');
 		i++;
 	}
