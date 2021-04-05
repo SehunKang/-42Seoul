@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 20:40:11 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/04 20:41:08 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/05 09:58:48 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		dest[dest_len + i] = src[i];
 		i++;
 	}
-	dest[dest_len + i] = '\0';
+	if (dest_len != 0)
+		dest[dest_len + i] = '\0';
 	return (dest_len + src_len);
 }
