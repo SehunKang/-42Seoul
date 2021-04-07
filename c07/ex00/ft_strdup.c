@@ -18,7 +18,7 @@ char	*ft_strdup(char *src)
 	if ((cp = (char *)malloc(ft_strlen(src) * sizeof(char) + 1)) == NULL)
 		return (0);
 	i = 0;
-	while (cp[i] = src[i])
+	while ((cp[i] = src[i]))
 		i++;
 	cp[i] = '\0';
 	return (cp);
