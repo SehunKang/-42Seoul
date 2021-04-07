@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testqueens.c                                       :+:      :+:    :+:   */
+/*   ft_ten_queens_puzzle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 09:34:39 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/07 10:03:47 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/07 09:42:03 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	g_board[10];
 int	g_cnt;
-int	g_placed;
 
 void	ft_write_board(void)
 {
@@ -32,21 +31,11 @@ void	ft_write_board(void)
 	g_cnt++;
 }
 
-int		ft_check_place(int column, int j, int queens)
-{
-	if (g_board[j] == column || column - g_board[j]
-	== queens - j || column - g_board[j] == j - queens)
-	{
-		g_placed = 0;
-		return (1);
-	}
-	return (0);
-}
-
 void	ft_queens(int queens)
 {
 	int column;
 	int j;
+	int placed;
 
 	if (queens == 10)
 	{
@@ -56,14 +45,19 @@ void	ft_queens(int queens)
 	column = 0;
 	while (column < 10)
 	{
-		g_placed = 1;
-		j = -1;
-		while (++j < queens)
+		placed = 1;
+		j = 0;
+		while (j < queens)
 		{
-			if (ft_check_place(column, j, queens))
+			if (g_board[j] == column || column - g_board[j]
+			== queens - j || column - g_board[j] == j - queens)
+			{
+				placed = 0;
 				break ;
+			}
+			j++;
 		}
-		if (g_placed)
+		if (placed)
 		{
 			g_board[queens] = column;
 			ft_queens(queens + 1);
@@ -72,7 +66,7 @@ void	ft_queens(int queens)
 	}
 }
 
-int		ft_ten_queens_puzzle(void)
+int	ft_ten_queens_puzzle(void)
 {
 	g_cnt = 0;
 	ft_queens(0);
