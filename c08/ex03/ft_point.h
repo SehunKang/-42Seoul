@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/10 10:49:46 by sehkang           #+#    #+#             */
+/*   Updated: 2021/04/10 11:04:55 by sehkang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_POINT_H
-#define FT_POINT_H
+# define FT_POINT_H
 
-typedef struct t_point {
-	int x;
-	int y;	
-} t_point;
-
+typedef	struct	s_point {
+	int	x;
+	int	y;
+}				t_point;
 #endif

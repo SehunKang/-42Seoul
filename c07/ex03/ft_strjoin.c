@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/10 10:08:37 by sehkang           #+#    #+#             */
+/*   Updated: 2021/04/10 10:17:08 by sehkang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
-int	ft_strlen(char *str)
+
+int		ft_strlen(char *str)
 {
 	int i;
 
@@ -9,7 +22,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_fullen(int size, char **strs, char *sep)
+int		ft_fullen(int size, char **strs, char *sep)
 {
 	int i;
 	int fullen;
@@ -39,10 +52,10 @@ void	ft_strcat(char *d_str, char *s_str)
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int full_len;
-	char *r_str;
-	char *cp_str;
-	int i;
+	int		full_len;
+	char	*r_str;
+	char	*cp_str;
+	int		i;
 
 	if (size == 0)
 		return ((char *)malloc(sizeof(char)));
@@ -51,7 +64,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		return (NULL);
 	cp_str = r_str;
 	i = 0;
-	while(i < size - 1)
+	while (i < size - 1)
 	{
 		ft_strcat(cp_str, strs[i]);
 		ft_strcat(cp_str, sep);
@@ -60,4 +73,3 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	ft_strcat(cp_str, strs[i]);
 	return (r_str);
 }
-
