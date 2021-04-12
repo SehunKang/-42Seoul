@@ -6,12 +6,11 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 10:04:48 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/12 11:26:09 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/12 21:12:56 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 char	*ft_strdnup(char *src, int n)
 {
@@ -97,20 +96,3 @@ char	**ft_split(char *str, char *charset)
 	arr[i] = 0;
 	return (arr);
 }
-
-int		main(void)
-{
-	char *str1 = "zAzxzxAAxAAAyAAAAzA A A A Axyzxyzxyzxxzzyy A ";
-	char *str2 = "xyz";
-	int num = ft_cnt_strs(str1, str2);
-	char **strs = ft_split(str1, str2);
-	int i = 0;
-	while (i < num)
-	{
-		printf("%s\n", strs[i]);
-		i++;
-	}
-}
-
-
-

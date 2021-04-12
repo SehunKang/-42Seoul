@@ -5,7 +5,7 @@ char	*ft_strjoin(int size, char **strs, char *sep);
 int	main(void)
 {
 	char *str[] = {"hello", "my", "name", "is", "sehun"};
-	char str2[] = "xxxxx";
+	char str2[] = "XXX";
 	
 	char *endstr;
 

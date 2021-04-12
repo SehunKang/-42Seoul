@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:08:37 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/10 10:17:08 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/12 17:08:25 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@ int		ft_fullen(int size, char **strs, char *sep)
 	return (fullen);
 }
 
-void	ft_strcat(char *d_str, char *s_str)
+char	*ft_strcpy(char *d_str, char *s_str)
 {
-	while (*d_str)
-		d_str++;
-	while (*s_str)
+	int i;
+	
+	i = 0;
+	while (s_str[i])
 	{
-		*d_str = *s_str;
-		d_str++;
-		s_str++;
+		d_str[i] = s_str[i];
+		i++;
 	}
+	d_str[i] = '\0';
+	return (d_str);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
@@ -60,16 +62,21 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	if (size == 0)
 		return ((char *)malloc(sizeof(char)));
 	full_len = ft_fullen(size, strs, sep);
-	if ((r_str = (char *)malloc(sizeof(char) * (full_len + 1))) == NULL)
+	if (!(r_str = (char *)malloc(sizeof(char) * (full_len + 1))))
 		return (NULL);
 	cp_str = r_str;
 	i = 0;
-	while (i < size - 1)
+	while (i < size)
 	{
-		ft_strcat(cp_str, strs[i]);
-		ft_strcat(cp_str, sep);
+		ft_strcpy(cp_str, strs[i]);
+		cp_str += ft_strlen(strs[i]);
+		if (i < size - 1)
+		{
+			ft_strcpy(cp_str, sep);
+			cp_str += ft_strlen(sep);
+		}
 		i++;
 	}
-	ft_strcat(cp_str, strs[i]);
+	*cp_str = '\0';
 	return (r_str);
 }

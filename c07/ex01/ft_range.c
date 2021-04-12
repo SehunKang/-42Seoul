@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 10:08:04 by sehkang           #+#    #+#             */
-/*   Updated: 2021/04/10 10:15:06 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/04/12 09:50:57 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		*ft_range(int min, int max)
 	unsigned int		size;
 	unsigned int		i;
 
-	size = max - min;
 	if (max <= min)
 		return (NULL);
-	if ((arr = malloc(sizeof(int) * size)) == NULL)
+	size = max - min;
+	if (!(arr = malloc(sizeof(int) * size)))
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -38,9 +38,9 @@ int		main(void)
 	int *arr;
 	int i;
 
-	arr = ft_range(-100, 100);
+	arr = ft_range(2147483640, 217483647);
 	i = 0;
-	while (i <= 200)
+	while (i <= 10)
 	{
 		printf("%d ", arr[i]);
 		i++;
