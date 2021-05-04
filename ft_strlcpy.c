@@ -6,8 +6,13 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 16:20:59 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/03 16:50:46 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/04 22:29:20 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
 
 
