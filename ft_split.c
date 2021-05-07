@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 13:11:21 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/05 22:07:37 by sehkang          ###   ########.fr       */
+/*   Created: 2021/05/06 20:18:42 by sehkang           #+#    #+#             */
+/*   Updated: 2021/05/06 22:03:49 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+static int	arr_len(char const *str, char c)
 {
-	size_t dst_len;
-	size_t src_len;
+	int		i;
+	int		flag;
+	int		len;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
-	if (src_len < dstsize - dst_len)
-		memcpy(dst + dst_len, src, src_len + 1);
-	else
+	i = 0;
+	flag = 1;
+	len = 0;
+	while (str[i])
 	{
-		memcpy(dst + dst_len, src, dstsize - 1);
-		dst[dst_len + dstsize - 1] = '\0';
+		if (str[i] == c)
+			flag = 1;
+		else
+		{
+			if (flag == 1)
+				len++;
+			flag = 0;
+		}
+		i++;
 	}
-	return (dst_len + src_len);
+	return (len);
 }
+
+char		**ft_split(char const *s, char c)
+{
+	char	**arr;
+	int		i;
+
+	arr = (char **)malloc((arr_len(str, c) + 1) * sizeof(char*));
+

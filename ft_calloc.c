@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 13:11:21 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/05 22:07:37 by sehkang          ###   ########.fr       */
+/*   Created: 2021/05/06 10:22:52 by sehkang           #+#    #+#             */
+/*   Updated: 2021/05/06 14:17:46 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_calloc(size_t counts, size_t size)
 {
-	size_t dst_len;
-	size_t src_len;
+	void	*ptr;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
-	if (src_len < dstsize - dst_len)
-		memcpy(dst + dst_len, src, src_len + 1);
-	else
-	{
-		memcpy(dst + dst_len, src, dstsize - 1);
-		dst[dst_len + dstsize - 1] = '\0';
-	}
-	return (dst_len + src_len);
+	if (!(ptr = malloc(counts * size)))
+		return (NULL);
+	ft_bzero(ptr, counts * size);
+	return (ptr);
 }

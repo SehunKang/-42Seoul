@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 13:11:21 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/05 22:07:37 by sehkang          ###   ########.fr       */
+/*   Created: 2021/05/05 23:25:59 by sehkang           #+#    #+#             */
+/*   Updated: 2021/05/06 10:17:04 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int	ft_isascii(int c)
 {
-	size_t dst_len;
-	size_t src_len;
-
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
-	if (src_len < dstsize - dst_len)
-		memcpy(dst + dst_len, src, src_len + 1);
-	else
-	{
-		memcpy(dst + dst_len, src, dstsize - 1);
-		dst[dst_len + dstsize - 1] = '\0';
-	}
-	return (dst_len + src_len);
+	return (0 <= c && c <= 127);
 }
