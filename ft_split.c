@@ -6,11 +6,12 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 20:18:42 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/07 16:51:57 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/07 22:19:10 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	arr_len(char const *str, char c)
 {
@@ -36,18 +37,16 @@ static int	arr_len(char const *str, char c)
 	return (len);
 }
 
-static int	*add_arr(char const *str, char c, int len)
+static void	add_arr(char const *str, char c, int len, int *add)
 {
 	int i;
 	int j;
 	int flag;
-	int *add;
 
-	add = (int *)malloc((len * 2) * sizeof(int));
-	i = 0;
+	i = -1;
 	j = 0;
 	flag = 1;
-	while (str[i])
+	while (str[++i])
 	{
 		if (str[i] == c)
 		{
@@ -56,12 +55,12 @@ static int	*add_arr(char const *str, char c, int len)
 			flag = 1;
 		}
 		else
+		{
 			if (flag == 1)
 				add[j++] = i;
 			flag = 0;
-		i++;
+		}
 	}
-	return (add);
 }
 
 char		**ft_split(char const *s, char c)
@@ -71,22 +70,24 @@ char		**ft_split(char const *s, char c)
 	int		*add;
 	int		len;
 
-	i = 0;
+	i = -1;
 	len = arr_len(s, c);
 	if (!(arr = (char **)malloc((len + 1) * sizeof(char*))))
 		return (NULL);
-	add = add_arr(s, c, len);
-	while (i < len)
+	if (!(add = (int *)malloc((len * 2) * sizeof(int))))
+		return (NULL);
+	add_arr(s, c, len, add);
+	while (++i < len)
 	{
-		arr[i] = ft_substr(s, add[i * 2], add[i * 2 + 1] - add[i * 2]);
-/*		if (!(arr[i]))
+		if (!(arr[i] = ft_substr(s, add[i * 2], add[i * 2 + 1] - add[i * 2])))
+		{
 			while (i < 0)
 				free(arr[i--]);
-			free(arr);*/
-		i++;
+			free(arr);
+			return (NULL);
+		}
 	}
-/*	if (arr)
-		arr[i] = NULL;
-	free(add); */
+	arr[i] = NULL;
+	free(add);
 	return (arr);
 }
