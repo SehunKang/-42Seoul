@@ -6,13 +6,13 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 16:35:33 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/08 19:11:28 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/09 21:11:38 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	int_len(int num, int *n)
+static int	int_len(int num)
 {
 	int i;
 
@@ -20,14 +20,12 @@ static int	int_len(int num, int *n)
 	if (num == -2147383648)
 		return (11);
 	if (num < 0)
-	{
-	//	*n *= -1;
 		i = 1;
-	}
 	while (num /= 10)
 		i++;
 	return (++i);
 }
+
 static void	num_arr(int n, int size, char *ptr)
 {
 	int i;
@@ -51,6 +49,7 @@ static void	num_arr(int n, int size, char *ptr)
 		n /= 10;
 	}
 }
+
 char		*ft_itoa(int n)
 {
 	int		size;
@@ -58,10 +57,10 @@ char		*ft_itoa(int n)
 	int		i;
 
 	i = 0;
-	size = int_len(n, &n);
+	size = int_len(n);
 	if (!(ret_ptr = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	num_arr(n, size, ret_ptr);	
+	num_arr(n, size, ret_ptr);
 	ret_ptr[size] = '\0';
 	return (ret_ptr);
 }

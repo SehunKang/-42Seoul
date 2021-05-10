@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 20:18:42 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/07 22:19:10 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/10 14:23:37 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	arr_len(char const *str, char c)
 	return (len);
 }
 
-static void	add_arr(char const *str, char c, int len, int *add)
+static void	add_arr(char const *str, char c, int *add)
 {
 	int i;
 	int j;
@@ -76,7 +76,7 @@ char		**ft_split(char const *s, char c)
 		return (NULL);
 	if (!(add = (int *)malloc((len * 2) * sizeof(int))))
 		return (NULL);
-	add_arr(s, c, len, add);
+	add_arr(s, c, add);
 	while (++i < len)
 	{
 		if (!(arr[i] = ft_substr(s, add[i * 2], add[i * 2 + 1] - add[i * 2])))

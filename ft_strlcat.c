@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:11:21 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/05 22:07:37 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/10 20:41:34 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	if (dstsize <= dst_len)
 		return (dstsize + src_len);
 	if (src_len < dstsize - dst_len)
-		memcpy(dst + dst_len, src, src_len + 1);
+		ft_memcpy(dst + dst_len, src, src_len + 1);
 	else
 	{
-		memcpy(dst + dst_len, src, dstsize - 1);
-		dst[dst_len + dstsize - 1] = '\0';
+		ft_memcpy(dst + dst_len, src, dstsize - dst_len - 1);
+		dst[dstsize - 1] = '\0';
 	}
 	return (dst_len + src_len);
 }
