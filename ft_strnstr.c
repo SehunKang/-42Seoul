@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 14:13:24 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/05 15:29:08 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/11 15:58:09 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	i = 0;
 	if (*n_ptr == '\0')
 		return (h_ptr);
-	while (0 < len)
+	while (0 < len && h_ptr[i] != 0)
 	{
 		if (*h_ptr == *n_ptr)
 		{

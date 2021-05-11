@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 20:18:42 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/10 14:23:37 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/11 15:52:59 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ static void	add_arr(char const *str, char c, int *add)
 	int i;
 	int j;
 	int flag;
+	int len;
 
+	len = ft_strlen(str) + 1;
 	i = -1;
 	j = 0;
 	flag = 1;
-	while (str[++i])
+	while (++i < len)
 	{
-		if (str[i] == c)
+		if (str[i] == c || str[i] == '\0')
 		{
 			if (flag == 0)
 				add[j++] = i;
