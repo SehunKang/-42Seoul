@@ -6,12 +6,11 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 20:18:42 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/11 15:52:59 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/18 17:13:32 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	arr_len(char const *str, char c)
 {
