@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:05:29 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/20 20:47:24 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/22 13:22:11 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 char *buf_stack(char **str_backup, char *buf)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(*str_backup, buf);
 	free(*str_backup);
 	return (tmp);
 }
+
 int	get_next_line(int fd, char **line)
 {
 	static char *str_backup[OPEN_MAX];
@@ -27,11 +28,16 @@ int	get_next_line(int fd, char **line)
 	int			result;
 	int			r_bytes;
 
-	str_backup[fd] = ft_strdup("");
-	while ((r_bytes = read(fd, buf, BUFFER_SIZE)) > 0)
+	if (fd < 0 || OPEN_MAX < fd || line == NULL || BUFFER_SIZE <= 0)
+		return (-1);
+	if (str_backup[fd] == NULL)
 	{
-		buf[r_bytes] = '\0';
-		str_backup[fd] = buf_stack(&str_backup[fd], buf);
+		str_backup[fd] = ft_strdup("");
+		while ((r_bytes = read(fd, buf, BUFFER_SIZE)) > 0)
+		{
+			buf[r_bytes] = '\0';
+			str_backup[fd] = buf_stack(&str_backup[fd], buf);
+		}
 	}
 	result = 1;
 	*line = str_backup[fd];
@@ -51,10 +57,5 @@ int	main(void)
 	int j = 0;
 	char *str;
 	str = *line;
-	while (str[j] != '\0')
-	{	
-		printf("%c\n", str[j]);
-		j++;
-	}
 	printf("fd = %d\nresult(i) = %d\nstr = **%s**\n", fd, i, *line);
 }
