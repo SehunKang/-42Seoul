@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 16:42:11 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/20 17:45:34 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/25 16:01:42 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*ret_ptr;
-
+	
 	len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(ret_ptr = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
@@ -44,6 +44,8 @@ size_t	ft_strlen(const char *s)
 	size_t i;
 
 	i = 0;
+	if (s == NULL)
+		return (i);
 	while (s[i])
 		i++;
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:05:29 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/22 13:22:11 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/26 22:25:24 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,34 @@ char *buf_stack(char **str_backup, char *buf)
 	return (tmp);
 }
 
+int	ret_val(char **str_backup, char **line)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (*str_backup[i] != '\n' && *str_backup[i])
+		i++;
+	tmp = ft_memcpy(tmp, *str_backup, i);
+
+
+
 int	get_next_line(int fd, char **line)
 {
-	static char *str_backup[OPEN_MAX];
+	static char *str_backup[OPEN_MAX][2];
 	char		buf[BUFFER_SIZE + 1];
-	int			result;
-	int			r_bytes;
+	ssize_t		r_bytes;
 
 	if (fd < 0 || OPEN_MAX < fd || line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
-	if (str_backup[fd] == NULL)
+	if (str_backup[fd][1] == NULL)
 	{
-		str_backup[fd] = ft_strdup("");
+		str_backup[fd][1] = "1";
 		while ((r_bytes = read(fd, buf, BUFFER_SIZE)) > 0)
 		{
 			buf[r_bytes] = '\0';
-			str_backup[fd] = buf_stack(&str_backup[fd], buf);
+			str_backup[fd][0] = buf_stack(&str_backup[fd][0], buf);
 		}
 	}
-	result = 1;
-	*line = str_backup[fd];
-	return (result);
-}
-
-#include <stdio.h>
-#include <fcntl.h>
-int	main(void)
-{
-	int fd;
-	fd = open("./a.txt", O_RDONLY);
-	char **line;
-	int i;
-	i = get_next_line(fd, line);
-	close(fd);
-	int j = 0;
-	char *str;
-	str = *line;
-	printf("fd = %d\nresult(i) = %d\nstr = **%s**\n", fd, i, *line);
+	return (ret_val(&str_backup[fd][0], line));
 }
