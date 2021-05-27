@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:05:29 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/26 22:25:24 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/27 14:43:26 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,26 @@ char *buf_stack(char **str_backup, char *buf)
 
 int	ret_val(char **str_backup, char **line)
 {
+	char	*ret_str;
 	char	*tmp;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	while (*str_backup[i] != '\n' && *str_backup[i])
+	if ((*str_backup)[i] == '\0')
+		return (0);
+	while ((*str_backup)[i] != '\n' && (*str_backup)[i])
 		i++;
-	tmp = ft_memcpy(tmp, *str_backup, i);
-
-
+	if(!(ret_str = (char *)malloc(sizeof(char) * (i + 1))))
+		return (-1);
+	ret_str = ft_memcpy(ret_str, *str_backup, i);
+	ret_str[i] = '\0';
+	if(!(tmp = ft_substr(*str_backup, i + 1, ft_strlen(*str_backup) - i)))
+		return (-1);
+	free(*str_backup);
+	*str_backup = tmp;
+	*line = ret_str;
+	return (1);
+}
 
 int	get_next_line(int fd, char **line)
 {
@@ -50,5 +61,8 @@ int	get_next_line(int fd, char **line)
 			str_backup[fd][0] = buf_stack(&str_backup[fd][0], buf);
 		}
 	}
+	if (r_bytes == 0 && str_backup[fd][0] == NULL)
+		str_backup[fd][0] = ft_strdup("");
 	return (ret_val(&str_backup[fd][0], line));
+	
 }
