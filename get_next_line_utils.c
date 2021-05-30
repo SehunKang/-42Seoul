@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 16:42:11 by sehkang           #+#    #+#             */
-/*   Updated: 2021/05/27 11:46:57 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/05/30 15:36:53 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*ret_ptr;
-	
+
 	len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(ret_ptr = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
@@ -24,19 +24,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(ret_ptr + ft_strlen(s1), s2, ft_strlen(s2));
 	ret_ptr[len] = '\0';
 	return (ret_ptr);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*ptr;
-	size_t	len;
-
-	len = ft_strlen(s1);
-	if (!(ptr = (char *)malloc((len + 1) * sizeof(char))))
-		return (NULL);
-	ft_memcpy(ptr, s1, len);
-	ptr[len] = '\0';
-	return (ptr);
 }
 
 size_t	ft_strlen(const char *s)
@@ -65,17 +52,31 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	char	*ret_ptr;
-	size_t	ptr_len;
+	char	*ptr;
+	size_t	len;
 
-	ptr_len = (len <= ft_strlen(s) - start) ? len : (ft_strlen(s) - start);
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
-	if (!(ret_ptr = (char *)malloc((ptr_len + 1) * sizeof(char))))
+	len = ft_strlen(s1);
+	if (!(ptr = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
-	ret_ptr = (char *)ft_memcpy(ret_ptr, s + start, ptr_len);
-	ret_ptr[ptr_len] = '\0';
-	return (ret_ptr);
+	ft_memcpy(ptr, s1, len);
+	ptr[len] = '\0';
+	return (ptr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s);
+	i = 0;
+	while (i < len + 1)
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (NULL);
 }
