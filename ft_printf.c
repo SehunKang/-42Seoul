@@ -6,18 +6,17 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 09:37:39 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 20:32:47 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 16:35:35 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		g_ret;
+int			g_ret;
 
-void	print_out(char *str, s_opt *opt, int max_len, int total_len)
+void		print_out(char *str, t_opt *opt, int max_len, int total_len)
 {
 	if (!(opt->left))
-	{
 		if (opt->zero == 1)
 		{
 			check_print_neg(str[0]);
@@ -30,7 +29,6 @@ void	print_out(char *str, s_opt *opt, int max_len, int total_len)
 				write(1, " ", 1);
 			check_print_neg(str[0]);
 		}
-	}
 	else
 		check_print_neg(str[0]);
 	while ((int)ft_strlen(str) < opt->precision--)
@@ -44,7 +42,7 @@ void	print_out(char *str, s_opt *opt, int max_len, int total_len)
 	free(str);
 }
 
-int	check_spec(char c, va_list *ap, s_opt opt)
+int			check_spec(char c, va_list *ap, t_opt opt)
 {
 	if (c == 'c')
 		print_c(ap, opt);
@@ -62,13 +60,14 @@ int	check_spec(char c, va_list *ap, s_opt opt)
 		print_capx(ap, opt);
 	else if (c == '%')
 		print_per(opt);
-	else 
+	else
 		return (0);
 	return (1);
 }
+
 const char	*check_opt(const char *str, va_list *ap)
 {
-	s_opt	opt;
+	t_opt		opt;
 	const char	*tmp;
 
 	tmp = str;
@@ -78,15 +77,12 @@ const char	*check_opt(const char *str, va_list *ap)
 	str = check_width(str, &opt, ap);
 	str = check_prec(str, &opt, ap);
 	if (!(check_spec(*str, ap, opt)))
-	{
-		write(1, tmp, 1);
 		return (++tmp);
-	}
 	str++;
-	return (str);	
+	return (str);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	va_list ap;
 

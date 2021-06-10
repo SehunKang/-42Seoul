@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	print_s(va_list *ap, s_opt opt)
+void	print_s(va_list *ap, t_opt opt)
 {
 	char	*str;
 	int		len;

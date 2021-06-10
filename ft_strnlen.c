@@ -6,23 +6,23 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 21:17:53 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/07 21:21:03 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 10:29:35 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strnlen(const char *s, size_t maxlen)
+int			ft_strnlen(const char *s, int maxlen)
 {
-	size_t len;
+	int		len;
 
 	len = 0;
 	while (len < maxlen)
 	{
 		if (!*s)
-			break;
+			break ;
 		len++;
-		s++;;
+		s++;
 	}
 	return (len);
 }

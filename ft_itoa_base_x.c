@@ -6,17 +6,17 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 16:35:33 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 15:30:52 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 10:26:29 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*ft_itoa_base_x(ssize_t n)
+char		*ft_itoa_base_x(long long n)
 {
-	size_t	size;
+	int		size;
 	char	*ret_ptr;
-	size_t	i;
+	int		i;
 	char	*base;
 
 	base = "0123456789abcdef";

@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:08:11 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 17:12:23 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 09:30:41 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	check_print_neg(char c)
 {
 	if (c == '-')
 		write(1, "-", 1);
-	return;
+	return ;
 }

@@ -6,13 +6,13 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 18:52:32 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 19:50:00 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 09:31:25 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void set_opt(s_opt *opt)
+void		set_opt(t_opt *opt)
 {
 	opt->left = 0;
 	opt->zero = 0;
@@ -20,7 +20,7 @@ void set_opt(s_opt *opt)
 	opt->precision = -1;
 }
 
-const char	*check_width(const char *str, s_opt *opt, va_list *ap)
+const char	*check_width(const char *str, t_opt *opt, va_list *ap)
 {
 	if (ft_isdigit(*str))
 	{
@@ -43,7 +43,7 @@ const char	*check_width(const char *str, s_opt *opt, va_list *ap)
 	return (str);
 }
 
-const char	*check_prec(const char *str, s_opt *opt, va_list *ap)
+const char	*check_prec(const char *str, t_opt *opt, va_list *ap)
 {
 	if (*str == '.')
 	{
@@ -67,7 +67,7 @@ const char	*check_prec(const char *str, s_opt *opt, va_list *ap)
 	return (str);
 }
 
-const char	*check_flag(const char *str, s_opt *opt)
+const char	*check_flag(const char *str, t_opt *opt)
 {
 	while (*str == '-' || *str == '0')
 	{

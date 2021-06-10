@@ -6,17 +6,17 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 16:35:33 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 15:14:27 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 10:25:56 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*ft_itoa(ssize_t n)
+char		*ft_itoa(long long n)
 {
-	size_t	size;
+	int		size;
 	char	*ret_ptr;
-	size_t	i;
+	int		i;
 
 	i = 0;
 	size = int_len(n);

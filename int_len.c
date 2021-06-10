@@ -6,15 +6,15 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:13:16 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/08 15:29:08 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/09 10:27:23 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	int_len(ssize_t num)
+int		int_len(long long num)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	if (num < 0)
