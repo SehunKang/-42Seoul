@@ -24,7 +24,7 @@ void	putnbr(unsigned long n)
 
 void	print_str(t_conf *conf)
 {
-	if (!((conf->bits - 32) % (1024 * 8)) && conf->str_len != 0)
+	if (!((conf->bits - 32) % (1024 * 8)))
 	{
 		write(1, conf->str, 1024);
 		ft_memset(conf->str, 0, 1024);
@@ -32,12 +32,12 @@ void	print_str(t_conf *conf)
 	if ((conf->bits / 8 - 4) == conf->str_len)
 	{
 		write(1, conf->str, conf->str_len % 1024);
+		ft_memset(conf->str, 0, 1024);
 		write(1, "\nbits received :", 16);
 		putnbr(conf->bits);
 		write(1, "\n", 1);
 		conf->bits = 0;
 		conf->str_len = 0;
-		ft_memset(conf->str, 0, 1024);
 	}
 }
 

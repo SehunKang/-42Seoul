@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_proto.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 22:47:06 by sehkang           #+#    #+#             */
-/*   Updated: 2021/07/08 22:48:54 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/07/15 14:34:04 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	main(int argc, char **argv)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(50);
 		i++;
 	}
 	while ((i / 8 - 4) < str_len)
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(50);
 		i++;
 	}
 	print_bits(i);
