@@ -6,14 +6,14 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 22:47:06 by sehkang           #+#    #+#             */
-/*   Updated: 2021/07/19 16:16:03 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/07/19 18:25:59 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-char			*g_str;
-unsigned int	g_str_len;
+static char			*g_str;
+static unsigned int	g_str_len;
 
 unsigned int	ft_strlen(const char *s)
 {
