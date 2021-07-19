@@ -32,25 +32,27 @@ void	print_str(t_conf *conf)
 	if ((conf->bits / 8 - 4) == conf->str_len)
 	{
 		write(1, conf->str, conf->str_len % 1024);
-		ft_memset(conf->str, 0, 1024);
-		write(1, "\nbits received :", 16);
-		putnbr(conf->bits);
 		write(1, "\n", 1);
+		ft_memset(conf->str, 0, 1024);
 		conf->bits = 0;
 		conf->str_len = 0;
+		conf->connected = 0;
 	}
 }
 
-void	sig_usr(int signo)
+void	sig_usr(int signo, struct __siginfo *info, void *uap)
 {
 	static t_conf	conf;
 
-	if (conf.bits < 32)
+	if (conf.connected == 0)
+	{
+		conf.connected = 1;
+		kill(info->si_pid, SIGUSR1);
+	}
+	else if (conf.bits < 32)
 	{
 		if (signo == SIGUSR1)
 			conf.str_len += (2147483648 >> conf.bits);
-		else if (signo != SIGUSR2)
-			write(1, "error", 5);
 		conf.bits++;
 		if (conf.bits == 32 && conf.str_len == 0)
 			print_str(&conf);
@@ -58,24 +60,21 @@ void	sig_usr(int signo)
 	else
 	{
 		if (conf.bits / 8 - 4 != conf.str_len)
-		{
 			if (signo == SIGUSR1)
 				conf.str[(conf.bits / 8 - 4) % 1024] += 128 >> (conf.bits % 8);
-			else if (signo != SIGUSR2)
-				write(1, "error", 5);
-			conf.bits++;
-		}
+		conf.bits++;
 		print_str(&conf);
 	}
+	(void)uap;
 }
 
 int	main(void)
 {
 	struct sigaction	usrsig;
 
-	usrsig.sa_handler = sig_usr;
+	usrsig.sa_sigaction = &sig_usr;
 	sigemptyset(&usrsig.sa_mask);
-	usrsig.sa_flags = 0;
+	usrsig.sa_flags = SA_SIGINFO;
 	write (1, "PID = ", 6);
 	putnbr(getpid());
 	write (1, "\n", 1);

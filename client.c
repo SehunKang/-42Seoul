@@ -6,11 +6,14 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 22:47:06 by sehkang           #+#    #+#             */
-/*   Updated: 2021/07/15 14:34:04 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/07/19 16:16:03 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+char			*g_str;
+unsigned int	g_str_len;
 
 unsigned int	ft_strlen(const char *s)
 {
@@ -20,28 +23,6 @@ unsigned int	ft_strlen(const char *s)
 	while (*s++)
 		i++;
 	return (i);
-}
-
-void	print_bits(unsigned long n)
-{
-	char	bits[5];
-	int		i;
-
-	i = 0;
-	write(1, "bits sent : ", 12);
-	while (9 < n)
-	{
-		bits[i] = n % 10 + '0';
-		n /= 10;
-		i++;
-	}
-	bits[i] = n % 10 + '0';
-	while (0 <= i)
-	{
-		write (1, &bits[i], 1);
-		i--;
-	}
-	write(1, "\n", 1);
 }
 
 int	ft_atoi(const char *str)
@@ -65,7 +46,7 @@ int	ft_atoi(const char *str)
 	return (sign * val);
 }
 
-void	check_conf(int argnum, char **args, unsigned int *str_len, int *pid)
+void	check_conf(int argnum, char **args, int *pid)
 {
 	if (argnum != 3)
 	{
@@ -75,7 +56,8 @@ void	check_conf(int argnum, char **args, unsigned int *str_len, int *pid)
 	else
 	{
 		*pid = ft_atoi(args[1]);
-		*str_len = ft_strlen(args[2]);
+		g_str_len = ft_strlen(args[2]);
+		g_str = args[2];
 	}
 	if (!(100 <= *pid && *pid < 100000))
 		write(1, "ERROR : Wrong PID\n", 18);
@@ -86,31 +68,46 @@ void	check_conf(int argnum, char **args, unsigned int *str_len, int *pid)
 	exit(1);
 }
 
-int	main(int argc, char **argv)
+void	sig_usr(int signo, struct __siginfo *info, void *uap)
 {
-	unsigned int	str_len;
-	unsigned int	i;
-	int				pid;
+	static unsigned int	i;
 
-	check_conf(argc, argv, &str_len, &pid);
 	i = 0;
 	while (i < 32)
 	{
-		if (str_len & (2147483648 >> i))
-			kill(pid, SIGUSR1);
+		if (g_str_len & (2147483648 >> i))
+			kill(info->si_pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
-		usleep(50);
+			kill(info->si_pid, SIGUSR2);
+		usleep(25);
 		i++;
 	}
-	while ((i / 8 - 4) < str_len)
+	while ((i / 8 - 4) < g_str_len)
 	{
-		if (argv[2][i / 8 - 4] & (128 >> (i % 8)))
-			kill(pid, SIGUSR1);
+		if (g_str[i / 8 - 4] & (128 >> (i % 8)))
+			kill(info->si_pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
-		usleep(50);
+			kill(info->si_pid, SIGUSR2);
+		usleep(25);
 		i++;
 	}
-	print_bits(i);
+	exit(1);
+	(void)signo;
+	(void)uap;
+}
+
+int	main(int argc, char **argv)
+{
+	int					pid;
+	struct sigaction	usrsig;
+
+	usrsig.sa_sigaction = &sig_usr;
+	sigemptyset(&usrsig.sa_mask);
+	usrsig.sa_flags = SA_SIGINFO;
+	check_conf(argc, argv, &pid);
+	kill(pid, SIGUSR1);
+	sigaction(SIGUSR1, &usrsig, 0);
+	sleep(1);
+	write(1, "Wrong PID\n", 10);
+	exit(1);
 }
