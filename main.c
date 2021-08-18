@@ -1,20 +1,37 @@
 #include <stdio.h>
-#include <fcntl.h>
 #include "get_next_line.h"
+#include <fcntl.h>
 
 int	main(void)
 {
-	int fd;
 	char *line;
-	int result;
+	int fd;
+	int res;
 
 	fd = open("./a.txt", O_RDONLY);
-	int i = 0;
-	printf("fd = %d\n", fd);
-	while ((result =get_next_line(fd, &line)) > 0)
+	while (res != 0)
 	{
-		printf("result : %d\nline : %s\n", result, line);	
+		res = get_next_line(fd, &line);
+		printf("fd = %d, %d - %s\n",fd, res, line);
+		free(line);
 	}
-	printf("result : %d\nline : %s\n", result, line);	
-	close(fd);
+	/*
+	fd = open("./b.txt", O_RDONLY);
+	for (int i = 0; i < 2; i++)
+	{
+		res = get_next_line(fd, &line);
+		printf("fd = %d, %d - %s\n",fd, res, line);
+		free(line);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		res = get_next_line(3, &line);
+		printf("fd = %d, %d - %s\n",3 , res, line);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		res = get_next_line(4, &line);
+		printf("fd = %d, %d - %s\n",4 , res, line);
+	}*/
 }
+

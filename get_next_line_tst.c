@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_tst.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:05:29 by sehkang           #+#    #+#             */
-/*   Updated: 2021/06/03 12:36:04 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/06/03 11:44:56 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,13 @@ int		ret_eof(char **str_backup, char **line)
 	*str_backup = NULL;
 	return (0);
 }
-#include <stdio.h>
+
 int		get_next_line(int fd, char **line)
 {
-	static char *str_backup[OPEN_MAX];
+	const char *str_backup[OPEN_MAX];
 	char		buf[BUFFER_SIZE + 1];
 	ssize_t		r_bytes;
 
-	for (int i = 0; i < 10; i++)
-		printf("%p\n", str_backup[i]);
 	if (fd < 0 || OPEN_MAX < fd || line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
 	if ((r_bytes = read(fd, buf, BUFFER_SIZE)) >= 0)
@@ -67,9 +65,6 @@ int		get_next_line(int fd, char **line)
 	}
 	else
 		return (-1);
-	printf("******NEW*******\n");
-	for (int i = 0; i < 10; i++)
-		printf("%p\n", str_backup[i]);
 	while (!(ft_strchr(str_backup[fd], '\n')))
 	{
 		if (r_bytes == 0)
