@@ -1,6 +1,6 @@
 NAME = push_swap 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 SRC_NAME = arg_utils.c list_utils.c other_utils.c swap_push_utils.c push_utils.c rotate_utils.c r_rotate_utils.c main.c shuffle_utils.c quick_sort.c
 SRC_PATH = ./srcs
