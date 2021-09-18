@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 12:24:44 by sehkang           #+#    #+#             */
-/*   Updated: 2021/09/12 20:23:00 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/09/18 21:10:29 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define K_R 124
 # define K_D 125
 # define K_U 126
+# define K_C 8
 # define SCR_U 4
 # define SCR_D 5
 
@@ -50,17 +51,33 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		(*fractal)(double, double, int);
+	int		(*fractal)(double, double, struct s_data *data);
 	t_axis	axis;
+	int		palette[16];
+	int		color_set_nu;
+	double	cx;
+	double	cy;
 }				t_data;
 
 
 void	arrows(int keycode, t_data *data);
 int		key(int keycode, t_data *data);
+void	color_set(t_data *data);
 int		wheel(int button, int x, int y, t_data *data);
-int		mandelbrot(double a, double b, int max);
+int		mandelbrot(double a, double b, t_data *data);
+int		burning_ship(double a, double b, t_data *data);
+int		julia(double a, double b, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	default_axis(t_data *data);
 void	check_arg(int argc, char **argv, t_data *data);
-void	draw_fractal(t_data *data, t_axis *ax);
+void	draw_fractal(t_data *data);
+int		set_color(int n, t_data *data);
+void	palette_zero(t_data *data);
+void	palette_one(t_data *data);
+void	palette_two(t_data *data);
+void	palette_three(t_data *data);
+double	julia_arg(char *str, char axis);
+void	wrong_parameter(int code);
+void	zoom_in(t_data *data, int x, int y);
+void	zoom_out(t_data *data, int x, int y);
 #endif

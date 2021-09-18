@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   event_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 20:13:50 by sehkang           #+#    #+#             */
-/*   Updated: 2021/09/18 19:14:31 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/09/18 21:12:46 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,4 @@ void	color_set(t_data *data)
 		palette_three(data);
 	else if (data->color_set_nu == 3)
 		data->color_set_nu = -1;
-}
-
-int	wheel(int button, int x, int y, t_data *data)
-{
-	double	px;
-	double	py;
-	double	x_len;
-	double	y_len;
-
-	x_len = fabs(data->axis.x1 - data->axis.x0);
-	y_len = fabs(data->axis.y1 - data->axis.y0);
-	px = x * (x_len / data->win_x) + data->axis.x0;
-	py = y * (y_len / data->win_y) + data->axis.y0;
-	if (button == SCR_U)
-	{
-		data->axis.x0 = px - (x_len * 0.4);
-		data->axis.x1 = px + (x_len * 0.4);
-		data->axis.y0 = py - (y_len * 0.4);
-		data->axis.y1 = py + (y_len * 0.4);
-	}
-	else if (button == SCR_D)
-	{
-		data->axis.x0 = data->axis.x0 - (x_len) * 0.125;
-		data->axis.x1 = data->axis.x1 + (x_len) * 0.125;
-		data->axis.y0 = data->axis.y0 - (y_len) * 0.125;
-		data->axis.y1 = data->axis.y1 + (y_len) * 0.125;
-	}
-	draw_fractal(data);
-	return (0);
 }

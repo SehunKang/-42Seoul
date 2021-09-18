@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 22:28:19 by sehkang           #+#    #+#             */
-/*   Updated: 2021/09/18 19:13:44 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/09/18 22:11:18 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	default_axis(t_data *data)
 		data->axis.y0 = -1.5;
 		data->axis.y1 = 1.5;
 	}
+	else if (data->fractal == burning_ship)
+	{
+		data->axis.x0 = -2.2;
+		data->axis.x1 = 1.65;
+		data->axis.y0 = -1.65;
+		data->axis.y1 = 0.55;
+	}
 }
 
 void	draw_fractal(t_data *data)
@@ -46,22 +53,23 @@ void	draw_fractal(t_data *data)
 	double	y;
 	int		n;
 
-	px = 0;
-	py = 0;
-	while (px < data->win_x)
+	px = -1;
+	py = -1;
+	while (++px < data->win_x)
 	{
-		while (py < data->win_y)
+		while (++py < data->win_y)
 		{
 			x = px * ((data->axis.x1 - data->axis.x0) / data->win_x)
 				+ data->axis.x0;
 			y = (data->win_y - py) * ((data->axis.y1 - data->axis.y0)
 					/ data->win_y) + data->axis.y0;
+			if (data->fractal == burning_ship)
+				y = py * ((data->axis.y1 - data->axis.y0)
+						/ data->win_y) + data->axis.y0;
 			n = data->fractal(x, y, data);
 			my_mlx_pixel_put(data, px, py, set_color(n, data));
-			py++;
 		}
-		px++;
-		py = 0;
+		py = -1;
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }
