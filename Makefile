@@ -6,7 +6,7 @@
 #    By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/20 20:36:25 by sehkang           #+#    #+#              #
-#    Updated: 2021/09/18 22:07:16 by sehkang          ###   ########.fr        #
+#    Updated: 2021/09/19 10:58:41 by sehkang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(BONUS_OBJ_PATH)/%.o : $(BONUS_SRC_PATH)/%.c
 	@mkdir -p $(BONUS_OBJ_PATH)
 	$(CC) $(INC) -c $< -o $@
 
-all : $(NAME)
+all : $(NAME) $(BONUS)
 
 bonus : $(BONUS)
 
@@ -74,9 +74,5 @@ fclean : clean
 	rm -rf $(BONUS)
 
 re : fclean all
-
-rr :
-	rm -rf $(NAME)
-	rm -rf $(BONUS)
 
 .PHONY : all, clean, fclean, re, bonus
