@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 22:28:19 by sehkang           #+#    #+#             */
-/*   Updated: 2021/09/18 22:11:18 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/09/19 11:29:04 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if (argc == 1)
+		wrong_parameter(1);
 	check_arg(argc, argv, &data);
 	data.mlx = mlx_init();
 	mlx_get_screen_size(data.mlx, &data.win_x, &data.win_y);

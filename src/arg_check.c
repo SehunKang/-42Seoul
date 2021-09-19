@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:12:45 by sehkang           #+#    #+#             */
-/*   Updated: 2021/09/18 21:49:56 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/09/19 11:27:39 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	check_arg(int argc, char **argv, t_data *data)
 {
+	if (argc == 1)
+		wrong_parameter(1);
 	if (argv[1][0] == 'm')
 	{
 		if (argc != 2)
