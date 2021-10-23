@@ -6,11 +6,27 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:16:00 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/18 07:27:49 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/24 01:57:19 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (n == 0)
+		return (0);
+	while (0 < n--)
+	{
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		if (*s1 == '\0' && *s2 == '\0')
+			return (0);
+		s1++;
+		s2++;
+	}
+	return (0);
+}
 
 int	ft_isdigit(int c)
 {
@@ -42,9 +58,17 @@ int	ft_atoi(const char *str)
 	return (sign * val);
 }
 
+time_t	get_time(void)
+{
+	struct timeval	time;
+	
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
 int	arg_check(t_info *info)
 {
-	if (info->nb_philosphers < 0 || 200 < info->nb_philosophers)
+	if (info->nb_philosophers < 0 || 10000 < info->nb_philosophers)
 		return (1);
 	if (info->time_to_die < 0 || MAX_TIME < info->time_to_die)
 		return (1);
@@ -52,7 +76,7 @@ int	arg_check(t_info *info)
 		return (1);
 	if (info->time_to_sleep < 0 || MAX_TIME < info->time_to_sleep)
 		return (1);
-	if (is_number_to_eat == 1)
+	if (info->is_number_to_eat == 1)
 		if (info->number_to_eat < 0)
 			return (1);
 	return (0);
