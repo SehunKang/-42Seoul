@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 13:51:10 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/24 02:13:38 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/25 19:49:30 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_philo(t_info *info, int	index)
 {
 	info->philosopher[index].id = index;
 	info->philosopher[index].left_fork = (index + info->nb_philosophers - 1) % info->nb_philosophers;
-	info->philosopher[index].right_fork = index + 1;
+	info->philosopher[index].right_fork = index;
 	info->philosopher[index].eat_count = 0;
 	info->philosopher[index].info = info;
 }
@@ -44,7 +44,7 @@ int	info_set(t_info *info)
 		pthread_mutex_init(&(info->fork[i]), NULL);
 		i++;
 	}
-	pthread_mutex_init(&(info->print), NULL);
+	pthread_mutex_init(&(info->eat), NULL);
 	info->is_all_eat = 0;
 	info->is_dead = 0;
 	return (0);
@@ -55,26 +55,25 @@ void	ft_sleep(time_t milisec)
 	time_t	start_time;
 
 	start_time = get_time();
-	while (1)
+	while (milisec > get_time() - start_time)
 	{
-		if (milisec < get_time() - start_time)
-			return ;
-		usleep(10);
+		usleep(100);
 	}
 	return ;
 }
 
 void	philo_print(t_info *info, t_philosopher *philo, const char *str)
 {
-	pthread_mutex_lock(&(info->print));
+	pthread_mutex_lock(&(info->eat));
 	if (!(info->is_dead))
 	{
 		if (ft_strncmp(str, "died", 4) == 0)
 			info->is_dead = 1;
-		printf("%ld %d %s\n", get_time() - info->start_time, philo->id, str);
+		printf("%ld %d %s\n", get_time() - info->start_time, philo->id + 1, str);
 	}
-	pthread_mutex_unlock(&(info->print));
+	pthread_mutex_unlock(&(info->eat));
 	return ;
+
 }
 
 void	eat(t_info *info, t_philosopher *philo)
@@ -83,10 +82,12 @@ void	eat(t_info *info, t_philosopher *philo)
 	philo_print(info, philo, "has taken a fork");
 	pthread_mutex_lock(&(info->fork[philo->right_fork]));
 	philo_print(info, philo, "has taken a fork");
+	//pthread_mutex_lock(&(info->eat));
 	philo->eat_time = get_time();
 	philo_print(info, philo, "is eating");
-	ft_sleep(info->time_to_eat);
 	philo->eat_count += 1;
+	//pthread_mutex_unlock(&(info->eat));
+	ft_sleep(info->time_to_eat);
 	pthread_mutex_unlock(&(info->fork[philo->left_fork]));
 	pthread_mutex_unlock(&(info->fork[philo->right_fork]));
 	return ;
@@ -99,13 +100,14 @@ void	*supper_ready(void *arg)
 
 	philo = (t_philosopher *)arg;
 	info = philo->info;
+	philo->eat_time = info->start_time;
 	if (philo->id % 2)
-		usleep(100);
+		ft_sleep(10);
 	while (!(info->is_dead))
 	{
 		eat(info, philo);
 		if (info->is_number_to_eat)
-			if (info->is_all_eat)
+			if (philo->eat_count == info->number_to_eat)
 				return (NULL);
 		philo_print(info, philo, "is sleeping");
 		ft_sleep(info->time_to_sleep);
@@ -127,9 +129,11 @@ void	philo_monitor(t_info *info)
 		{
 			if (get_time() - info->philosopher[i].eat_time > info->time_to_die)
 			{
+				//pthread_mutex_lock(&(info->eat));
 				philo_print(info, &(info->philosopher[i]), "died");
+				//pthread_mutex_unlock(&(info->eat));
 				return ;
-			}//usleep을 통해 식사시간과 동기화 할 수 있을까?
+			}
 			total_eat += info->philosopher[i].eat_count;
 			if (total_eat == info->number_to_eat * info->nb_philosophers)
 			{
@@ -148,16 +152,22 @@ void	philo_end(t_info *info)
 	i = 0;
 	while (i < info->nb_philosophers)
 	{
-		pthread_join(info->philosopher[i].thread, NULL);
+		if (pthread_mutex_destroy(&(info->fork[i])))
+		{
+			pthread_mutex_unlock(&info->fork[i]);
+			pthread_mutex_destroy(&(info->fork[i]));
+		}
 		i++;
 	}
 	i = 0;
 	while (i < info->nb_philosophers)
 	{
-		pthread_mutex_destroy(&(info->fork[i]));
+		pthread_join(info->philosopher[i].thread, NULL);
 		i++;
 	}
-	pthread_mutex_destroy(&(info->print));
+	pthread_mutex_destroy(&(info->eat));
+	free(info->fork);
+	free(info->philosopher);
 	return ;
 }
 
@@ -180,10 +190,10 @@ int	main(int argc, char **argv)
 	info.start_time = get_time();
 	while (i < info.nb_philosophers)
 	{
-		info.philosopher[i].eat_time = info.start_time;
 		pthread_create(&(info.philosopher[i].thread), NULL, supper_ready, &(info.philosopher[i]));
 		i++;
 	}
+	ft_sleep(50);
 	philo_monitor(&info);
 	philo_end(&info);	
 }
