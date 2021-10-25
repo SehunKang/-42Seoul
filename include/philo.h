@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:17:24 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/25 19:21:20 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/25 21:34:12 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define MAX_TIME 3600000
 
-typedef	struct	s_philosopher
+typedef struct s_philosopher
 {
 	int				id;
 	int				left_fork;
@@ -32,9 +32,8 @@ typedef	struct	s_philosopher
 	pthread_t		thread;
 	struct s_info	*info;
 }				t_philosopher;
-	
 
-typedef struct	s_info
+typedef struct s_info
 {
 	int				nb_philosophers;
 	int				time_to_die;
@@ -46,7 +45,7 @@ typedef struct	s_info
 	int				is_dead;
 	time_t			start_time;
 	pthread_mutex_t	eat;
-	pthread_mutex_t print;
+	pthread_mutex_t	print;
 	pthread_mutex_t	*fork;
 	t_philosopher	*philosopher;
 
