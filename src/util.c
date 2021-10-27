@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 21:24:50 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/26 15:55:14 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/27 16:24:38 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_sleep(time_t milisec)
 	start_time = get_time();
 	while (milisec > get_time() - start_time)
 	{
-		usleep(100);
+		usleep(50);
 	}
 	return ;
 }

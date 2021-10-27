@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 23:16:00 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/25 21:30:21 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:43:24 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	info_set(t_info *info)
 		pthread_mutex_init(&(info->fork[i]), NULL);
 		i++;
 	}
-	pthread_mutex_init(&(info->eat), NULL);
+	pthread_mutex_init(&(info->print), NULL);
 	return (0);
 }

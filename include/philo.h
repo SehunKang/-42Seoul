@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:17:24 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/25 21:34:12 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/27 15:08:55 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_info
 	pthread_mutex_t	print;
 	pthread_mutex_t	*fork;
 	t_philosopher	*philosopher;
-
 }				t_info;
 
 void	philo_monitor(t_info *info);
