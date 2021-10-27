@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:17:24 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/27 15:08:55 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/27 19:27:07 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_info
 	int				is_all_eat;
 	int				is_dead;
 	time_t			start_time;
-	pthread_mutex_t	eat;
 	pthread_mutex_t	print;
 	pthread_mutex_t	*fork;
 	t_philosopher	*philosopher;
