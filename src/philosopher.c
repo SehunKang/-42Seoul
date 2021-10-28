@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 21:29:18 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/27 19:27:43 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/28 16:15:51 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	philo_print(t_info *info, t_philosopher *philo, const char *str)
 			philo->eat_count += 1;
 			philo->eat_time = get_time();
 		}
-		printf("%ld %d %s\n", get_time() - info->start_time, philo->id + 1, str);
+		ft_putnbr_fd(get_time() - info->start_time, 1);
+		ft_putchar_fd(' ', 1);
+		ft_putnbr_fd(philo->id + 1, 1);
+		ft_putchar_fd(' ', 1);
+		ft_putstr_fd(str, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	pthread_mutex_unlock(&(info->print));
 	return ;

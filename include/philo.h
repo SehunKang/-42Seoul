@@ -6,7 +6,7 @@
 /*   By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:17:24 by sehkang           #+#    #+#             */
-/*   Updated: 2021/10/27 19:27:07 by sehkang          ###   ########.fr       */
+/*   Updated: 2021/10/28 16:28:19 by sehkang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,9 @@ int		ft_atoi(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		info_set(t_info *info);
 void	set_philo(t_info *info, int index);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(const char *s, int fd);
+size_t	ft_strlen(const char *s);
 
 #endif

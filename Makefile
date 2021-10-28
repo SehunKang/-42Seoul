@@ -6,7 +6,7 @@
 #    By: sehkang <sehkang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 15:21:30 by sehkang           #+#    #+#              #
-#    Updated: 2021/10/26 14:24:11 by sehkang          ###   ########.fr        #
+#    Updated: 2021/10/28 16:28:29 by sehkang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = gcc
 FLAG = -Wall -Wextra -Werror -lpthread
 
-SRC_NAME = main.c arg_util.c philosopher.c util.c
+SRC_NAME = main.c arg_util.c philosopher.c util.c print_arg.c
 SRC_PATH = ./src
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 
