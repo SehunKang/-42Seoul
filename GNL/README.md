@@ -1,8 +1,11 @@
 # GNL - Get Next Line
+
+2번째 프로젝트 
+
 ```c
 int get_next_line(int fd, char **line)
 ```
-위 함수를 만드는 프로젝트이다.  
+위 함수를 만드는 프로젝트이다.   
 파일디스크립터로부터 한 줄을 읽고 반환하는 함수이다.
 매개변수 : fd = file descripter의 값, line = 문자열을 담는 변수  
 리턴값 : 1 = 한 라인을 읽음, 0 = EOF를 만남(끝까지 읽음), -1 = 에러  
